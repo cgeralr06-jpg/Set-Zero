@@ -86,6 +86,11 @@ class Juego:
             ancho: Ancho de la pantalla
             alto: Alto de la pantalla
         """
+
+        self.respuesta_seleccionada = None
+        self.es_correcta = None
+        self.tiempo_feedback = 0
+        self.motrar_feedback = False
         self.ancho = ancho
         self.alto = alto
         self.generador = GeneradorConjuntos()
@@ -144,12 +149,17 @@ class Juego:
         self.tiempo_inicio = pygame.time.get_ticks()
         self.tiempo_restante = 15
         
+        # Resetear feedback
+        self.mostrando_feedback = False
+        self.respuesta_seleccionada = None
+        self.es_correcta = None
+
         # Actualizar texto de los botones con las opciones
         for i, opcion in enumerate(self.pregunta_actual["opciones"]):
             elementos = sorted(list(opcion))
             texto = "{" + ", ".join(map(str, elementos)) + "}"
             self.botones_respuesta[i].texto = texto
-            
+
     def actualizar(self):
         """
         Actualiza el estado del juego (temporizador)
@@ -162,6 +172,14 @@ class Juego:
             # Si se acaba el tiempo, generar nueva pregunta
             if self.tiempo_restante <= 0:
                 self.nueva_pregunta()
+
+            if self.mostrando_feedback:
+                tiempo_desde_feedback = tiempo_actual - self.tiempo_feedback
+                if tiempo_desde_feedback > 1000:
+                    self.mostrando_feedback = False
+                    self.respuesta_seleccionada = None
+                    self.es_correcta = None
+                    self.nueva_pregunta()
     
     def verificar_respuesta(self, indice_boton):
         """
@@ -170,12 +188,24 @@ class Juego:
         Args:
             indice_boton: Indice del boton clickeado (0-3)
         """
+
+        #Guardar botón clickeado
+
+        self.respuesta_seleccionada = indice_boton
+
         opcion_seleccionada = self.pregunta_actual["opciones"][indice_boton]
         respuesta_correcta = self.pregunta_actual["respuesta_correcta"]
         
         if opcion_seleccionada == respuesta_correcta:
+            self.es_correcta = True
             self.puntos += 10
-        
+        else:
+            self.es_correcta = False
+
+        #Activar feedback
+        self.motrar_feedback = True
+        self.tiempo_feedback = pygame.time.get_ticks()
+
         # Generar nueva pregunta
         self.nueva_pregunta()
     
@@ -221,7 +251,20 @@ class Juego:
         dibujar_diagrama_venn(pantalla, self.ancho // 2, 280, conjunto_a, conjunto_b)
         
         # Dibujar botones de respuesta
-        for boton in self.botones_respuesta:
+        for i,boton in enumerate(self.botones_respuesta):
+
+            if self.mostrando_feedback and i == self.respuesta_seleccionada:
+
+                if self.es_correcta:
+                    boton.color = (0, 200, 0)
+                    boton.color_hover = (0,200,0)
+                else:
+                    boton.color = (200,0,0)
+                    boton.color_hover = (200,0,0)
+            else:
+                boton.color = BLANCO
+                boton.color_hover = GRIS_CLARO
+
             boton.dibujar(pantalla)
         
         # Boton volver

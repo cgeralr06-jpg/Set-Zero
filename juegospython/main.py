@@ -1,7 +1,7 @@
 import pygame
 import sys
 from pantallas import Menu, Juego, Tutorial
-aaaaaa
+
 # Configuracion de la ventana
 ANCHO_VENTANA = 1080
 ALTO_VENTANA = 600
