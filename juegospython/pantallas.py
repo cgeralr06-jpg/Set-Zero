@@ -8,6 +8,8 @@ MORADO = (102, 126, 234)
 MORADO_OSCURO = (118, 75, 162)
 GRIS_CLARO = (248, 249, 250)
 GRIS = (200, 200, 200)
+VERDE = (0, 200, 0)
+ROJO = (200, 0, 0)
 
 class Menu:
     def __init__(self, ancho, alto):
@@ -256,11 +258,11 @@ class Juego:
             if self.mostrando_feedback and i == self.respuesta_seleccionada:
 
                 if self.es_correcta:
-                    boton.color = (0, 200, 0)
-                    boton.color_hover = (0,200,0)
+                    boton.color = VERDE
+                    boton.color_hover = VERDE
                 else:
-                    boton.color = (200,0,0)
-                    boton.color_hover = (200,0,0)
+                    boton.color = ROJO
+                    boton.color_hover = ROJO
             else:
                 boton.color = BLANCO
                 boton.color_hover = GRIS_CLARO
