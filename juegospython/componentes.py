@@ -55,7 +55,6 @@ class Boton:
                 return True
         return False
 
-
 # Clase para manejar la logica de conjuntos
 class GeneradorConjuntos:
     def __init__(self):
@@ -64,7 +63,7 @@ class GeneradorConjuntos:
         """
         self.operaciones = [
             {"simbolo": "U", "nombre": "union"},
-            {"simbolo": "∩", "nombre": "interseccion"},
+            {"simbolo": "n", "nombre": "interseccion"},
             {"simbolo": "-", "nombre": "diferencia"},
             {"simbolo": "Δ", "nombre": "diferencia_simetrica"}
         ]
@@ -164,7 +163,6 @@ class GeneradorConjuntos:
             "opciones": opciones
         }
 
-
 # Funciones auxiliares para dibujar elementos
 def dibujar_texto(pantalla, texto, x, y, tamaño, color, centrado=True):
     """
@@ -187,7 +185,6 @@ def dibujar_texto(pantalla, texto, x, y, tamaño, color, centrado=True):
         rect = superficie_texto.get_rect(topleft=(x, y))
         
     pantalla.blit(superficie_texto, rect)
-
 
 def dibujar_conjunto(pantalla, conjunto, x, y, ancho, alto, etiqueta, color_borde):
     """
@@ -217,7 +214,6 @@ def dibujar_conjunto(pantalla, conjunto, x, y, ancho, alto, etiqueta, color_bord
     # Dibujar elementos
     dibujar_texto(pantalla, texto_elementos, x + ancho // 2, y + 60, 28, (50, 50, 50))
 
-
 def dibujar_diagrama_venn(pantalla, x, y, conjunto_a, conjunto_b):
     """
     Dibuja un diagrama de Venn simple mostrando dos conjuntos
@@ -244,10 +240,6 @@ def dibujar_diagrama_venn(pantalla, x, y, conjunto_a, conjunto_b):
     # Posicionar circulos
     pantalla.blit(superficie_a, (x - 50, y - radio))
     pantalla.blit(superficie_b, (x + 50 - radio * 2, y - radio))
-    
-    # Dibujar bordes de los circulos
-    # pygame.draw.circle(pantalla, color_a, (x - 50 + radio, y), radio, 3)
-    # pygame.draw.circle(pantalla, color_b, (x + 50 - radio + radio, y), radio, 3)
     
     # Etiquetas A y B
     dibujar_texto(pantalla, "A", x - 70, y, 36, color_a)

@@ -78,7 +78,6 @@ class Menu:
             return "salir"
         return None
 
-
 class Juego:
     def __init__(self, ancho, alto):
         """
@@ -296,7 +295,6 @@ class Juego:
         
         return None
 
-
 class Tutorial:
     def __init__(self, ancho, alto):
         """
@@ -314,7 +312,7 @@ class Tutorial:
         self.conceptos = [
             {
                 "nombre": "Union",
-                "simbolo": "∪",
+                "simbolo": "U",
                 "descripcion": "La union de dos conjuntos contiene todos los elementos que estan en A, en B, o en ambos.",
                 "ejemplo_a": "{1, 2, 3}",
                 "ejemplo_b": "{3, 4, 5}",
@@ -322,7 +320,7 @@ class Tutorial:
             },
             {
                 "nombre": "Interseccion",
-                "simbolo": "∩",
+                "simbolo": "n",
                 "descripcion": "La interseccion contiene solo los elementos que estan en ambos conjuntos simultaneamente.",
                 "ejemplo_a": "{1, 2, 3}",
                 "ejemplo_b": "{3, 4, 5}",

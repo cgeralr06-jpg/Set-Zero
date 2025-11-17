@@ -106,7 +106,6 @@ class JuegoSetZero:
         pygame.quit()
         sys.exit()
 
-
 # Punto de entrada del programa
 if __name__ == "__main__":
     juego = JuegoSetZero()
