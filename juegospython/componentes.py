@@ -63,7 +63,7 @@ class GeneradorConjuntos:
         Inicializa el generador de conjuntos y preguntas
         """
         self.operaciones = [
-            {"simbolo": "∪", "nombre": "union"},
+            {"simbolo": "U", "nombre": "union"},
             {"simbolo": "∩", "nombre": "interseccion"},
             {"simbolo": "-", "nombre": "diferencia"},
             {"simbolo": "Δ", "nombre": "diferencia_simetrica"}
